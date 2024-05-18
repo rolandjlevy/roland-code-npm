@@ -1,0 +1,21 @@
+{
+  "name": "roland-code-npm",
+  "version": "1.0.0",
+  "description": "Code repository for Roland",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolandjlevy/roland-code-npm.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Roland",
+    "code",
+    "software",
+    "development"
+  ],
+  "author": "Roland Levy",
+  "license": "ISC"
+}
