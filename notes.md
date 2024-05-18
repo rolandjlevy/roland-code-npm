@@ -4,6 +4,7 @@
 
 - Web Dev Simplified [Video Tutorial](https://www.youtube.com/watch?v=J4b_T-qH3BY)
 - Official docs [online guide](https://docs.npmjs.com/creating-and-publishing-private-packages)
+- FreeCodeCamp [online guilde](https://www.freecodecamp.org/news/how-to-create-and-publish-your-first-npm-package/)
 
 ### Updating
 
