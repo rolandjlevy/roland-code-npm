@@ -1,7 +1,7 @@
 {
   "name": "roland-code-npm",
   "version": "1.0.0",
-  "description": "Code repository for Roland",
+  "description": "Roland's Code snippets for software development",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -16,6 +16,10 @@
     "software",
     "development"
   ],
-  "author": "Roland Levy",
-  "license": "ISC"
+  "author": "Roland Levy <contact@rolandlevy.co.uk> (https://rolandlevy.co.uk)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolandjlevy/roland-code-npm/issues"
+  },
+  "homepage": "https://github.com/rolandjlevy/roland-code-npm/blob/main/#readme"
 }
