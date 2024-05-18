@@ -1,3 +1,3 @@
-const {utils } = require('roland-code-npm');
+const { utils } = require("roland-code-npm");
 
-console.log(utils.healthCheck.message)
+console.log(utils.healthCheck.message);
