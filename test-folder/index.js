@@ -1,10 +1,10 @@
-const { utils } = require("roland-code-npm");
+const { stringUtils, healthCheck } = require("roland-code-npm");
 
 // health check
-console.log(utils.healthCheck.message);
+healthCheck();
 
 // convert object's strings to toUpperCase
-const { convertStringValuesRecursively } = utils.string;
+const { convertStringValuesRecursively, convertCamelCaseToWords } = stringUtils;
 
 // mock data
 const obj = {
@@ -21,9 +21,15 @@ const obj = {
   },
 };
 
-const rsult = convertStringValuesRecursively({
+const convertedToUpperCase = convertStringValuesRecursively({
   obj,
   transformFn: "toUpperCase",
 });
 
-console.log("convertStringValuesRecursively > test result:", rsult);
+console.log("convertStringValuesRecursively > result:", convertedToUpperCase);
+
+const convertedCamelCaseToWords = convertCamelCaseToWords(
+  "thisIsACamelCaseWord"
+);
+
+console.log("convertedCamelCaseToWords > result:", convertedCamelCaseToWords);
