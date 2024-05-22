@@ -3,15 +3,53 @@ const constants = {
     /^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 };
 
-const healthCheck = () => console.log("healthCheck message: hello world");
-
-const stringUtils = {
+const utils = {
   convertCamelCaseToWords(camelCaseWord = "") {
     if (!camelCaseWord) {
       return "";
     }
     const words = camelCaseWord?.replace(/([A-Z])/g, " $1");
     return words.charAt(0).toUpperCase() + words.slice(1);
+  },
+  convertStringValues({ entity: obj, transformFn, exclusions = [] }) {
+    const entity = utils.deepClone(obj);
+    if (!transformFn) throw new Error("No transform function provided");
+    if (
+      typeof entity === "string" &&
+      !entity.match(constants.VALID_EMAIL_REGEX)
+    ) {
+      return transformFn(entity.trim());
+    }
+    if (Array.isArray(entity)) {
+      return entity.map((item) =>
+        utils.convertStringValues({ entity: item, transformFn, exclusions })
+      );
+    }
+    if (typeof entity === "object") {
+      Object.keys(entity).forEach((key) => {
+        if (!exclusions.includes(key)) {
+          entity[key] = utils.convertStringValues({
+            entity: entity[key],
+            transformFn,
+            exclusions,
+          });
+        }
+      });
+      return entity;
+    }
+    return entity;
+  },
+  deepClone(entity) {
+    if (entity === null || typeof entity !== "object") {
+      return entity;
+    }
+    if (Array.isArray(entity)) {
+      return entity.map((item) => utils.deepClone(item));
+    }
+    return Object.entries(entity).reduce((acc, [key, value]) => {
+      acc[key] = utils.deepClone(value);
+      return acc;
+    }, {});
   },
   // example: find / replace {email} in the string 'Additional details for {email}'
   dynamicFindAndReplace({ str, find, replace }) {
@@ -28,41 +66,14 @@ const stringUtils = {
     const matches = url.match(/^[^?]*/);
     return matches ? matches[0] : url;
   },
-  convertStringValuesRecursively({ obj, transformFn, exclusions = [] }) {
-    const convertString = function (value, key) {
-      if (
-        typeof value === "string" &&
-        !exclusions.includes(key) &&
-        !value.match(constants.VALID_EMAIL_REGEX)
-      ) {
-        return value[transformFn]().trim();
-      }
-      if (Array.isArray(value)) {
-        return value.map((val) => convertString(val, key));
-      }
-      if (typeof value === "object") {
-        return stringUtils.convertStringValuesRecursively({
-          obj: value,
-          transformFn,
-          exclusions,
-        });
-      }
-      return value;
-    };
-    return Object.fromEntries(
-      Object.entries(obj).map(([key, value]) => [
-        key,
-        convertString(value, key),
-      ])
-    );
-  },
   isRelativePath(path) {
     return !/^https?:\/\//.test(path);
   },
 };
+const healthCheck = () => console.log("healthCheck message: hello world!");
 
 module.exports = {
+  utils,
   constants,
-  stringUtils,
   healthCheck,
 };

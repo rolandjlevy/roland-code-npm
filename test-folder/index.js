@@ -1,16 +1,16 @@
-const { stringUtils, healthCheck } = require("roland-code-npm");
+const { utils, healthCheck } = require("roland-code-npm");
 
-// health check
 healthCheck();
 
-// convert object's strings to toUpperCase
-const { convertStringValuesRecursively, convertCamelCaseToWords } = stringUtils;
+const { convertStringValues, convertCamelCaseToWords } = utils;
 
 // mock data
-const obj = {
+const entity = {
   name: "roland levy",
+  status: "married",
   interests: ["meditation", "coding", "art"],
   address: "37 Wyndale Road, Leicester, LE23WS",
+  projects: [{ personal: ["diy", "teaching"], work: ["translation"] }],
   family: {
     diane: {
       relationship: "auntie",
@@ -21,12 +21,16 @@ const obj = {
   },
 };
 
-const convertedToUpperCase = convertStringValuesRecursively({
-  obj,
-  transformFn: "toUpperCase",
+const convertedToUpperCase = convertStringValues({
+  entity,
+  transformFn: (str) => str.toUpperCase(),
+  exclusions: ["interests"],
 });
 
-console.log("convertStringValuesRecursively > result:", convertedToUpperCase);
+console.log(
+  "convertStringValuesRecursively > result:",
+  JSON.stringify(convertedToUpperCase, null, 2)
+);
 
 const convertedCamelCaseToWords = convertCamelCaseToWords(
   "thisIsACamelCaseWord"
