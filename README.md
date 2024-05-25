@@ -11,4 +11,5 @@
 
 ### Front-end code
 
-- Available from this [CDN link](https://cdn.jsdelivr.net/npm/roland-code-npm/index-client.js) from [jsdelivr.com](https://www.jsdelivr.com/)
+- [Import as a CDN](https://cdn.jsdelivr.net/npm/roland-code-npm/index-client.js) from [jsdelivr.com](https://www.jsdelivr.com/)
+- [Example code](https://cdn.jsdelivr.net/npm/roland-code-npm/test-client/index.html)
