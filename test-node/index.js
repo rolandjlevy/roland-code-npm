@@ -1,4 +1,4 @@
-const { utils, healthCheck } = require("roland-code-npm");
+const { healthCheck, utils } = require("roland-code-npm");
 
 healthCheck();
 
