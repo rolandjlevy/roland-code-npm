@@ -12,9 +12,9 @@
 - Install from the CLI: `npm install roland-code-npm`
 - Example using CommonJS require to load the module:
 
-```javacript
-  const { healthCheck } = require("roland-code-npm");
-  healthCheck();
+```javascript
+const { healthCheck } = require("roland-code-npm");
+healthCheck();
 ```
 
 ### Front-end environment
