@@ -19,13 +19,13 @@
 
 ### Front-end environment
 
-- Import as a CDN [https://cdn.jsdelivr.net/npm/roland-code-npm/index-client.js](https://cdn.jsdelivr.net/npm/roland-code-npm/index-client.js)
-- View a [demo](https://cdn.jsdelivr.net/npm/roland-code-npm/test-client/index.html)
+- Import as a CDN [https://cdn.jsdelivr.net/npm/roland-code-npm@latest/index-client.js](https://cdn.jsdelivr.net/npm/roland-code-npm@latest/index-client.js)
+- View a [demo](https://cdn.jsdelivr.net/npm/roland-code-npm@latest/test-client/index.html)
 - Example using ES6 import to load the module:
 
 ```javascript
 <script type="module">
-  import { domUtils } from 'https://cdn.jsdelivr.net/npm/roland-code-npm/index-client.js';
+  import { domUtils } from 'https://cdn.jsdelivr.net/npm/roland-code-npm@latest/index-client.js';
   const { $, createElem, randomNum } = domUtils;
   const randomImageUrl = () => 'https://source.unsplash.com/random?' + randomNum(1000);
   const img = createElem('img', { src: randomImageUrl() });
