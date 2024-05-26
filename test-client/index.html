@@ -6,12 +6,12 @@
     <title>Front-end test with script module</title>
     <script type="module">
       import { domUtils } from "https://cdn.jsdelivr.net/npm/roland-code-npm/index-client.js";
-      const { $, createElem } = domUtils;
-      const randomImageUrl = "https://source.unsplash.com/random?1";
-      const img = createElem("img", { src: randomImageUrl });
-      img.addEventListener("click", async (e) => {
-        const { url } = await fetch(randomImageUrl);
-        e.target.src = url;
+      const { $, createElem, randomNum } = domUtils;
+      const randomImageUrl = () =>
+        "https://source.unsplash.com/random?" + randomNum(1000);
+      const img = createElem("img", { src: randomImageUrl() });
+      img.addEventListener("click", (e) => {
+        e.target.src = randomImageUrl();
       });
       $(".photo").appendChild(img);
     </script>

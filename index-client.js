@@ -11,4 +11,7 @@ export const domUtils = {
     const el = document.createElement(tagName);
     return Object.assign(el, props);
   },
+  randomNum(n) {
+    return Math.floor(Math.random() * n) + 1;
+  },
 };
