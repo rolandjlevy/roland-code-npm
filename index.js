@@ -72,6 +72,19 @@ const utils = {
   isRelativePath(path) {
     return !/^https?:\/\//.test(path);
   },
+  // example: stringToJson('{"a":1, "b":[1,2,3], "c":false}', {});
+  stringToJson(value, defaultValue) {
+    if (typeof value !== "string" || !value) {
+      console.warn("Expected a non-empty string as input");
+      return defaultValue;
+    }
+    try {
+      return JSON.parse(value);
+    } catch (error) {
+      console.error("Failed to parse JSON", { error, value });
+      return defaultValue;
+    }
+  },
 };
 
 module.exports = {
