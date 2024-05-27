@@ -72,6 +72,20 @@ const utils = {
   isRelativePath(path) {
     return !/^https?:\/\//.test(path);
   },
+  removeDuplicateObjectsFromArray(arr) {
+    return arr.filter(
+      (item, index) =>
+        index ===
+        arr.findIndex(
+          (obj) =>
+            JSON.stringify(obj).toLowerCase() ===
+            JSON.stringify(item).toLowerCase()
+        )
+    );
+  },
+  removeSpaces(str) {
+    return str?.length ? str.replace(/\s/g, "") : "";
+  },
   // example: stringToJson('{"a":1, "b":[1,2,3], "c":false}', {});
   stringToJson(value, defaultValue) {
     if (typeof value !== "string" || !value) {
@@ -84,6 +98,9 @@ const utils = {
       console.error("Failed to parse JSON", { error, value });
       return defaultValue;
     }
+  },
+  async sleep({ delayLengthMs }) {
+    return await new Promise((resolve) => setTimeout(resolve, delayLengthMs));
   },
 };
 
